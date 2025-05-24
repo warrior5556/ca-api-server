@@ -1,13 +1,15 @@
-require('dotenv').config();  // Load env vars at the top
+require('dotenv').config(); // Load environment variables
 
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-const db = require('../ca-api-server/db/db');  // Make sure this path is correct
 
-// CORS setup
+// ✅ Corrected path to db file (assuming /db/db.js exists)
+const db = require('./db/db');
+
+// CORS configuration
 const corsOptions = {
   origin: process.env.ALLOWED_ORIGIN || 'http://localhost:4200',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -39,6 +41,11 @@ app.use("/doc-recived-master", docRecivedMasterRoutes);
 app.use("/sub-allotment", subAllotmentRoutes);
 app.use("/task-allotment", taskAllotmentRoutes);
 app.use("/sub-allotments", subAllotmentsRoutes);
+
+// Optional test route to verify server is up
+app.get('/', (req, res) => {
+  res.send('✅ CA API server is running!');
+});
 
 // Start server
 const PORT = process.env.PORT || 5000;
