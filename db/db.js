@@ -9,7 +9,7 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME, // Correct environment variable for database
   waitForConnections: true,
   connectionLimit: 10,
-  connectTimeout: 25000,
+  connectTimeout: 55000,
   queueLimit: 0
 });
 
